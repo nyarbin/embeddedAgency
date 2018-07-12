@@ -17,8 +17,8 @@
 %Body
 \begin{document}
 
-\title{A Theory of Embeded Agency}
-\author{Ben Reis\footnote{Imperfectly educated layman; embeded agent}}
+\title{A Theory of embedded Agency}
+\author{Ben Reis\footnote{Imperfectly educated layman; embedded agent}}
 \maketitle
 
 \section{Introduction}
@@ -41,20 +41,44 @@ physical substrate.
 
 However, at least as far as I can tell, relatively little work has been done to
 check these assumptions. This is partially because of a difficulty in definition
-- the fact that an agent must be embeded within the universe on which it acts
+- the fact that an agent must be embedded within the universe on which it acts
 makes it difficult to rigorously define the problems an agent faces, and thence
 prove limits on an agent's ability to solve them. In this paper I primarily wish
 to define agency within a universe that has properties allowing the generated
 results to apply to agents in the real world, without specifying the physics of
 that universe more than necessary.
 
+In the following sections, I present a definition of a Turing equivalent
+universe and a Turing equivalent agent operating within that universe, various
+metrics to describe the capabilities of such an agent, ceilings on those
+capabilities, and a discussion of how multiple agents can interact.
+
 The definitions and results presented here, and any consequences thereof, I call
-the theory of embeded agency. Embeded agency touches on a wide range of topics;
-results from physics, game theory, decision theory, signal processing, social
-choice theory, and classical machine learning and AI studies are likely to be
-useful in studying this field. My hope is to provide a framework for
+the theory of embedded agency. embedded agency touches on a wide range of
+topics; results from physics, game theory, decision theory, signal processing,
+social choice theory, and classical machine learning and AI studies are likely
+to be useful in studying this field. My hope is to provide a framework for
 synthesizing these results into a realistic model of agency as it can be
 implemented in the real world.
+
+\section{Prerequisites}
+\label{sec:prereqs}
+
+Before we can properly construct a theory of embedded agency, we must discuss a
+slight generalization of standard abstract machines, and general properties of
+embedded machines.
+
+\subsection{Clean and Dirty Machines}
+\label{sec:dirty}
+
+%TODO generalize standard TM tape extension to allow dirtyness; discuss in CA
+%     context as well.
+
+\subsection{Relevant results on embedded machines}
+\label{sec:embedding}
+
+%TODO machines cannot contain predictions of themselves; LBAs on a dirty tape
+%     can be(come?) Turing complete.
 
 \section{The Universe and its Properties}
 \label{sec:universe}
@@ -62,8 +86,8 @@ implemented in the real world.
 We begin by defining the universe in which our agent will act. This will be
 where most of our assumptions are located; the applicability of the results in
 this paper depends on the defined universe matching up to our own as to the
-effects of its properties on the capabilities of an agent embeded within it. I
-will occasionally refer in this section to the agent or agents embeded within
+effects of its properties on the capabilities of an agent embedded within it. I
+will occasionally refer in this section to the agent or agents embedded within
 the universe; these will be defined in Section \ref{sec:agents}.
 
 The first and most fundamental assumption is that the universe is a universal
@@ -123,7 +147,7 @@ which the agent under consideration has been operating.
 
 Finally, we can without loss of generality disregard any halting state of the
 universe, since the halting of the universe necessarily halts the agent or
-agents embeded within.
+agents embedded within.
 
 %TODO maybe introduce a requirement that there be a degree of steady state in
 %     the universe. Not totally sure how to formalize - maybe make agents LBAs
@@ -179,7 +203,7 @@ and the new configuration of the universe is called the result
 state.\footnote{This discrete notion of time may or may not correspond to the
 physical reality we inhabit, though it is expected to. Regardless, for reasons
 discussed in Section \ref{sec:agents}, this should not affect the abstract
-capabilities of agents embeded within the universe.} When we refer to the state
+capabilities of agents embedded within the universe.} When we refer to the state
 of the universe ``at'' a particular time step, we shall by convention be
 referring to the initial state of that time step. We define a time interval
 \(\Delta t\) as a sequence of time steps where for each step pair of steps
