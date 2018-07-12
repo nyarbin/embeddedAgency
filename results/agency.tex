@@ -385,15 +385,31 @@ and only its possible values are encoded in the physical dynamics.
 
 \end{lem}
 
-\subsection{Capability Metrics}
+\section{Capability Metrics}
 \label{sec:metrics}
 % notes: three metrics: one for senses and prediction, one for planning and goal
 %        resolution, and one for action economy.
 
-%TODO may absorb next section
+We define three broad metrics to measure how well an agent is able to accomplish
+its goals.
 
-\section{Intelligence, Naturalized Induction, and Interaction}
-\label{sec:intelligence}
+The first and most fundamental is action economy, which compares the time an
+agent spends on a task to the degree to which the agent accomplishes said task.
+It has many varients and specialized forms which can be used to measure things
+like the intrinsic ability of an agent to affect its universe, the amount of
+effort the agent spends on the task, and the cost to the agent in external
+resources.
+
+The simplest metric is the second, sensory acuity. It measures how much data the
+agent recieves from its sensors relative to the amount of data the sensors
+recieve from the universe.
+
+The third and final metric is the agent's intelligence. Intelligence measures
+the efficiency and efficacy of the agent's algorithms for various strictly
+internal tasks, like updating the world model to account for new data, making
+predictions based on the world model, performing goal resolution, and planning
+courses of action. Intelligence can be divided into general and domain
+intelligence depending on how well-defined the problem in question is.
 
 %TODO see: Problems Tackled 2.1, 2.2; Omohundro Drives; Soars World Models
 
@@ -401,11 +417,11 @@ and only its possible values are encoded in the physical dynamics.
 \label{sec:games}
 
 
-\section{Personhood}
+\subsection{Personhood}
 \label{sec:persons}
 
 
-\section{Composite and Implicit Agents}
+\subsection{Composite and Implicit Agents}
 \label{sec:composites}
 
 % It occurs to me that this section is going to show mathematically that
