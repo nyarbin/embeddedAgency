@@ -9,6 +9,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
 \newtheorem{conj}{Conjecture}
+\newtheorem{cor}{Corollary}
 \newtheorem{lem}{Lemma}
 \newtheorem{thm}{Theorem}
 \newtheorem{prf}{Proof}
@@ -30,13 +31,13 @@ a whole.
 
 The urgency of this task depends on the idea that ``intelligence'' is a
 fundamentally unbounded property. That is, there is no maximally intelligent
-mind and a mind (or some minds) capable of constructing other minds is capable
-of constructing a mind that shares its goals but is more intelligent. The nature
-of the task depends on the current nonexistence of any sort of superintelligent
-AI and on the particular presumed form of any superintelligence that will emerge
-in the future, namely that such an intelligence (and any successors it creates)
-will be a single computer program, or possibly many copies of a single program,
-implimented on a direct physical substrate.
+mind and there exists a mind capable of constructing other minds that share its
+goals but are more intelligent. The nature of the task depends on the current
+nonexistence of any sort of superintelligent AI and on the particular presumed
+form of any superintelligence that will emerge in the future, namely that such
+an intelligence (and any successors it creates) will be a single computer
+program, or possibly many copies of a single program, implimented on a direct
+physical substrate.
 
 However, at least as far as I can tell, relatively little work has been done to
 check these assumptions. This is partially because of a difficulty in definition
@@ -49,10 +50,11 @@ that universe more than necessary.
 
 The definitions and results presented here, and any consequences thereof, I call
 the theory of embeded agency. Embeded agency touches on a wide range of topics;
-results from physics, game theory, decision theory, signal processing, and
-classical machine learning and AI studies are likely to be useful in studying
-this field. My hope is to provide a framework for synthesizing these results
-into a realistic model of agency as it can be implemented in the real world.
+results from physics, game theory, decision theory, signal processing, social
+choice theory, and classical machine learning and AI studies are likely to be
+useful in studying this field. My hope is to provide a framework for
+synthesizing these results into a realistic model of agency as it can be
+implemented in the real world.
 
 \section{The Universe and its Properties}
 \label{sec:universe}
@@ -93,13 +95,45 @@ physics.}
 
 Second, we assume that the universe is deterministic. This is largely to
 simplify certain ideas discussed in Section \ref{sec:models}, but the
-implications of a nondeterministic universe should be examined at some point.
+implications of a nondeterministic universe should be examined at some
+point.\footnote{For one thing, in a deterministic universe, it is trivial as a
+practical matter that \(P \not= \mathit{NP}\), since nondeterministic machines
+cannot be directly implemented. If the universe is nondeterministic, \(P =
+\mathit{NP}\) may create two different classes of agents, subject to different
+limitations.}%TODO think more before dashing off P=/=NP in a footnote.
 
-Third, we require that the universe has a property called \textit{locality}.
-Locality requires that we introduce a notion of time and a notion of
-space.\footnote{This is why I am not examining a universe defined on a lambda
+Third, we require that the universe has a property called \textit{locality},
+defined and discussed below. Locality requires that we introduce a notion of
+time and a notion of space\footnotemark, which are developed in the same
+section. The notion of locality described in this paper is very similar to the
+concept as it is used in physics, but it is not precisely the same. Notably, it
+allows universe-wide dynamic state, which is used in some interpretations of
+quantum mechanics to escape the EPR paradox. For metaphysical reasons I do not
+believe it is strictly necessary to provide an escape from the EPR paradox, but
+it is certainly convenient that the theory can do so.
+
+\footnotetext{This is why I am not examining a universe defined on a lambda
 expression - I do not understand lambda calculus well enough to clearly define
-time and especially space in such a context.}
+time and especially space in such a context, although I suspect there is a way
+to do it.}
+
+Fourth, we assume that the universe is operating on random data for a time
+interval \(t_\textit{hist} \gg t_l\), where \(t_l\) is the time interval over
+which the agent under consideration has been operating.
+
+Finally, we can without loss of generality disregard any halting state of the
+universe, since the halting of the universe necessarily halts the agent or
+agents embeded within.
+
+%TODO maybe introduce a requirement that there be a degree of steady state in
+%     the universe. Not totally sure how to formalize - maybe make agents LBAs
+%     instead of full TMs, and then require that the universe be sufficiently
+%     stable for them to arbitrarily extend their memory. Stability could also
+%     be a requirement of agency - require that they be able to take actions
+%     with effects 
+
+\subsection{Space, Time, and Locality}
+\label{sec:locality}
 
 To develop the idea of space, we split the universe into two groups of
 components: the infinite components and the finite components. The infinite
@@ -159,7 +193,8 @@ identical to the result state of step \(t_{i-1}\).
 We are now ready to define the property of locality:
 
 \begin{defn}
-   %TODO refine for readability
+   %TODO refine for readability; locality function should be in terms of regions
+   %     not region sizes.
 
    A universe obeys the principle of \textit{locality} iff for any finite time
    interval \(\Delta t\) beginning at initial time \(t_0\) and ending at final
@@ -172,6 +207,11 @@ We are now ready to define the property of locality:
 
 \end{defn}
 
+\begin{lem}
+   %TODO prove
+   The locality function is bijective.
+\end{lem}
+
 If \(\Delta x\) is known and \(\Delta y\) is not, \(\Delta x\) is called the
 \textit{region of interest} and \(\Delta y\) is called the \textit{region of
 relevance}. If \(\Delta y\) is known and \(\Delta x\) is not, \(\Delta y\) is
@@ -179,13 +219,19 @@ called the \textit{known region} and \(\Delta x\) is called the
 \textit{predictable region}. \(\Delta t\) is called the \textit{duration of
 predictability}.
 
+\begin{lem}
+   %TODO prove
+   The predictable region is always a subset of the known region.
+\end{lem}
+
 %TODO discuss relationship between locality and c.
 
 %TODO discuss locality and c in TMs, automata.
 
 %TODO import notions of spacelike, timelike, and lightlike intervals.
 
-%TODO remove following paragraph
+%TODO remove following paragraph (replaced by locality assumption and followon
+%     discussion)
 % Second, we assume that there is a maximum speed at which information
 % propagates, which we call \(c\), the computation speed of the universe. This
 % requires some notion of time in the universe. That is, we require that time pass
@@ -198,28 +244,101 @@ predictability}.
 % arbitrary events to occur between each tick local to the cell.
 %end of cut region
 
-Fourth, we assume that the universe is operating on random data for a time
-interval \(t_\textit{hist} \gg t_l\), where \(t_l\) is the time interval over
-which the agent under consideration has been operating.
+\subsection{Formal Definition of a Universe}
+\label{sec:universe_formal}
 
-Finally, we can without loss of generality disregard any halting state of the
-universe, since the halting of the universe necessarily halts the agent or
-agents embeded within.
+% TODO pull everything together into a formal definition (likely will need
+%      outside help for this)
 
-%TODO maybe introduce a requirement that there be a degree of steady state in
-%     the universe. Not totally sure how to formalize - maybe make agents LBAs
-%     instead of full TMs, and then require that the universe be sufficiently
-%     stable for them to arbitrarily extend their memory. Stability could also
-%     be a requirement of agency - require that they be able to take actions
-%     with effects 
+\subsection{The Contents of a Spatial Region}
+\label{sec:contents}
+
+Having formally defined our universe, we now briefly turn to its contents at a
+level more fundamental than the agent(s) it contains.
+
+% TODO Describe how various properties of a region can be defined.
 
 \section{Agency}
 \label{sec:agents}
 
 % TODO basic definition
 
-\subsection{World Models}
+% TODO rewrite for clarity; remove the words "extended" and "extension"
+With a clear understanding of the universe in which our agent is to operate, we
+can now proceed to define the agent itself. The agent is defined as a
+deterministic linear bounded automaton or equivalent finite-memory reduced form
+of a Turing equivalent structure\footnotemark extended with two operating
+components and encoding in its memory two modelling components. Its program
+includes of all of the code necessary to operate the extensions and process the
+models, as well as code that would be able to operate a universal Turing
+machine if given arbitrary memory. The operating components are a set of sensors
+which deterministicly record changes to their state in the machine's memory and
+a set of actuators which are able to deterministicly change the state of regions
+outside the machine according to the internal state of the machine. The
+modelling components are the world model, which is affected directly by the
+operation of the sensors, and the approval relation, which is affected only by
+the world model.
+
+% TODO convert this footnote into a brief lemma.
+\footnotetext{I conjecture that such a reduced form exists for any Turing
+equivalent structure, but in any event many machine models exist which can
+simulate or be simulated by a linearly bounded automaton of appropriate size.}
+
+\subsection{World Models and Sensors}
 \label{sec:models}
+
+An agent's world model consists of two components: the state description and the
+physical dynamics. The state description is a summary of the current state of
+any part of the universe that can change when time is advanced. The physical
+dynamics are a generic summary of how the universe's state changes as time is
+advanced. Note that, for the Turing machine model of a universe, the current
+state of the control automaton is part of the physics, but in the world model of
+an agent in the universe that state is part of the broader state description,
+and only its possible values are encoded in the physical dynamics.
+
+\begin{thm}
+   % TODO prove
+
+   A perfect world model is insufficient to perfectly predict the future state
+   of the universe.
+
+\end{thm}
+
+\begin{prf}
+   % TODO from halting problem
+\end{prf}
+
+\begin{prf}
+   % TODO from properties of the universe
+\end{prf}
+
+\begin{cor}
+   An agent cannot perfectly predict itself.
+\end{cor}
+
+\begin{thm}
+   % TODO prove
+
+   No agent can acquire a complete state description.
+
+\end{thm}
+
+\begin{prf}
+   % TODO from locality
+\end{prf}
+
+\begin{thm}
+   % TODO prove
+
+   A perfect model of the agent's knowable region is insufficient to perfectly
+   predict the future state of the knowable region's corresponding predictable
+   region.
+
+\end{thm}
+
+\begin{prf}
+   % TODO from properties of the universe
+\end{prf}
 
 % notes: define fictional, plausible, and counterfactual statements
 % see: Incomplete Models
@@ -232,9 +351,42 @@ agents embeded within.
 
 % note: define the operation of goal resolution, implicit and explicit.
 
+% note: talk about bounded and unbounded goals; the true nature of the utility
+%       monster.
+
+\subsection{Actuators and Extensions}
+\label{sec:action}
+
+\begin{lem}
+% TODO prove
+
+   An agent can use its actuators and sensors to, in finite time, modify an
+   arbitrary region of space in its light cone to serve as an extension to its
+   memory, enabling it to act as a Turing machine, as long as the agent's
+   sensors are able to detect the results of the operation of its actuators.
+
+\end{lem}
+
+\begin{lem}
+   % TODO prove
+
+   An agent can use its actuators to, in finite time, construct additional
+   actuators with arbitrary characteristics, so long as its actuators can
+   modify distinct regions in different ways.
+
+\end{lem}
+
+\begin{lem}
+   % TODO prove
+
+   An agent can use its actuators to, in finite time, construct additional
+   sensors with arbitrary characteristics, so long as its operating components
+   meet the necessary conditions for the prior lemma.
+
+\end{lem}
+
 \subsection{Capability Metrics}
 \label{sec:metrics}
-
 % notes: three metrics: one for senses and prediction, one for planning and goal
 %        resolution, and one for action economy.
 
@@ -255,6 +407,9 @@ agents embeded within.
 
 \section{Composite and Implicit Agents}
 \label{sec:composites}
+
+% It occurs to me that this section is going to show mathematically that
+% political advocacy is at least moderately important as a cause area. Oh dear.
 
 % note: discuss the "cast of millions" argument against artificial intelligence
 %       and/or in favor of corporate intelligence.
