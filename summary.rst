@@ -21,6 +21,9 @@ knowledgable on those subjects could assist in some way. Below is an informal sk
 arguments; my halting and scattered attempts to formalize them can be found in the "results"
 directory.
 
+This work involves a number of questions proposed in Soares and Fallenstein's research agenda
+proposed in 2017. Specifically, it implicates most of section 2 of that paper, directly or
+indirectly, in how the universe is modelled and how agents' approval relations are defined.
 
 Working Definition of an Agent
 ##############################
@@ -49,9 +52,11 @@ universe. The agent can use its models to decide on a course of action that will
 into (or close to) the desired state, enact that plan with its actuator(s), and check the results
 with its sensor(s), updating the models based on the difference (if any) between the expected
 results and the actual results. This update and assesment process is very important and in need of
-attention. I have the beginnings of a model for it based on hypergraphs; it is worth noting that,
-unlike the "utility" concept, my model does not require that the agent's desires to have reached an
-equilibrium state or constitute a function from universe state to degree of approval.
+attention. I have the beginnings of a model which I call the approval relation; it is worth noting
+that, unlike the "utility" concept, my model does not require that the agent's desires to have
+reached an equilibrium state or constitute a function from universe state to degree of approval. It
+can also clearly identify the problem with goals like that of the paperclipper, and some of the
+degenerate results of altruistic utilitarianism.
 
 Time, Space, Locality
 #####################
