@@ -17,7 +17,7 @@
 %Body
 \begin{document}
 
-\title{A Theory of embedded Agency}
+\title{A Theory of Embedded Agency}
 \author{Ben Reis\footnote{Imperfectly educated layman; embedded agent}}
 \maketitle
 
@@ -74,7 +74,21 @@ embedded machines.
 %TODO generalize standard TM tape extension to allow dirtyness; discuss in CA
 %     context as well.
 
-\subsection{Relevant results on embedded machines}
+Standard Turing machines (and equivalent computational structures) are often described as having
+"infinite" memory, but key to their operation and limitations is the fact that they have finite
+access to that memory. A Turing machine, for example, may only move one cell at a time, and
+therefore cannot examine a cell that is infinitely distant from its starting cell in finite time.
+Similarly a cellular automaton with two "live" regions can only contain interactions between those
+regions if they are finitely distant from each other. These aspects of an abstract machine's
+function are sometimes defined in terms of new regions of memory being created when first accessed,
+and sometimes defined as already existing. It will be useful in the following sections to keep both
+constructions in mind.
+
+In general, unaccessed regions are assumed to be "blank" in some sense - they contain (or are
+created containing) exclusively "dead" cells, or all cells containing some "blank" symbol, and 
+generally have uniform data. 
+
+\subsection{Relevant Results on Embedded Machines}
 \label{sec:embedding}
 
 %TODO machines cannot contain predictions of themselves; LBAs on a dirty tape
